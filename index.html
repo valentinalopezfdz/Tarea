@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEOSISTEMAS</title>
+    <style>
+        .body {
+            background-color: darkgray;
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            height: 20vh;
+        }
+
+        .contenedor {
+            width: 20%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .boton {
+            cursor: pointer;
+        }
+
+        .main {
+            display: block;
+            display: flex;
+            flex-direction: row;
+            border: 1px solid green;
+            height: 80vh;
+        }
+
+        .izquierda {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            width: 30%;
+            align-items: center;
+            justify-content: space-around;
+
+        }
+
+        .derecha {
+            border: 1px solid black;
+            width: 70%;
+        }
+
+        .contenedorLogo {
+            display: flex;
+            border: 1px solid black;
+            width: 100%;
+            justify-content: center;
+        }
+        .derecha{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .eventoDerecha{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            border: 1px solid green;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <header class="header">
+        <div class="contenedor">
+            <button class="boton" onclick="mostrar()">
+                <h1 class="titulo">NEOSISTEMAS</h1>
+            </button>
+        </div>
+
+    </header>
+    <main class="main" id="main">
+
+        <div class="izquierda">
+            <div class="primerBoton">
+                <button class="primerEje" id="primerEje" onclick="mostrarPrimerEje()">
+                    EJE 1
+                </button>
+            </div>
+            <div class="segundoBoton" id="segundoBoton">
+                <button class="segundoEje" id="segundoEje" onclick="mostrarSegundoEje()">
+                    EJE 2
+                </button>
+            </div>
+        </div>
+        <div class="derecha" id="derecha">
+            
+        </div>
+
+
+    </main>
+    <script>
+        const main = document.getElementById('main');
+        const boton = document.getElementById('boton');
+        const primerBoton = document.getElementById('primerEje')
+        const derecha = document.getElementById('derecha')
+        x = 0;
+        function mostrar() {
+            x = x+1;
+            main.innerHTML = '<div class="contenedorLogo"><img class="image" src="Neosistemas-300x300.png" alt="logo"></div>';
+            if (x==1){
+                crono = setTimeout(mostrar, 1000);
+            }
+            if (x==2){
+                main.innerHTML = '<div class="izquierda"><div class="primerBoton"><button class="primerEje" id="primerEje" onclick="mostrarPrimerEje()">EJE 1</button></div><div class="segundoBoton" id="segundoBoton"><button class="segundoEje" id="segundoEje" onclick="mostrarSegundoEje()">EJE 2</button></div></div><div class="derecha" id="derecha"></div>'
+                x=0;
+            }
+        };
+        function mouse(){
+            c = event.clientX;
+            y = event.clientY;
+            document.getElementById('eventoDerecha').innerHTML = 'Estoy dentro' + c + "" + y;
+            x=0;
+        }
+        function mostrarPrimerEje(){
+            x = x+1;
+            if (x%2==0){
+                document.getElementById('derecha').innerHTML = ''
+            }
+            if(x==1){
+                
+                document.getElementById('derecha').innerHTML = '<div onmousemove="mouse()" id="eventoDerecha" class="eventoDerecha">Estoy dentro</div>'
+                x=0
+            }
+        }
+        function mostrarSegundoEje(){
+            x = x+1;
+            if (x==1){
+                crono = setTimeout(mostrarSegundoEje, 5000);
+                document.getElementById('derecha').innerHTML = 'Mi nombre es Valentina';
+            }
+            if (x==2){
+                crono = setTimeout(mostrarSegundoEje, 5000);
+                document.getElementById('derecha').innerHTML = 'estudio en NEOSISTEMAS';
+            }
+            if(x==3){
+                crono = setTimeout(mostrarSegundoEje, 5000);
+                document.getElementById('derecha').innerHTML = 'y estoy en el grado 9';
+            }
+            if (x==4){
+                document.getElementById('derecha').innerHTML = '';
+                x=0;
+            }
+            
+        };
+        
+    </script>
+</body>
+
+</html>
